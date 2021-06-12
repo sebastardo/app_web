@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Register</h3>
+			</div>
+			<div class="card-body">
+				<form action="/signup"
+					onsubmit="return verifyPasswords(pass1.value, pass2.value, 'password-error');"
+					method="POST">
+
+					<!-- username input -->
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text"
+							class="form-control"
+							name="username"
+							placeholder="username"
+							minlength="4"
+							maxlength="20"
+							pattern="[A-Za-z0-9]+"
+							required
+							onblur="validateField(this.value, 'username', 'username-error');"
+							title="Solo letras y números de 4 a 20 caracteres">
+						<!-- <span id="checkuser" class="alert alert-danger"></span> -->
+					</div>
+
+					<!-- password input -->
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>	
+						<input type="password"
+							class="form-control"
+							name="password"
+							id="pass1"
+							placeholder="password"
+							minlength="4"
+							pattern="^\S+$"
+							required
+							title="La contraseña no debe contener espacios"
+							onblur="verifyPasswords(this.value, pass2.value, 'password-error');">
+					</div>
+
+					<!-- password confirm input -->
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>	
+						<input type="password"
+							class="form-control"
+							name="password2"
+							id="pass2"
+							placeholder="confirm password"
+							minlength="4"
+							pattern="^\S+$"
+							required
+							onblur="verifyPasswords(this.value, pass1.value, 'password-error');">
+					</div>
+
+					<!-- submit -->
+					<div class="form-group">
+						<input type="submit" value="Sign Up" class="btn float-right login_btn">
+					</div>
+					
+				</form>
+			</div>
+
+			<!-- Verification messages, hide with .d-none and visible with .d-block -->
+			<div id="password-error" class="alert alert-danger d-none" role="alert">
+				Passwords don't match, please try again.
+			</div>
+
+			<div id="username-error" class="alert alert-danger d-none" role="alert">
+				User already exists, please try other.
+			</div>
+
+			<div id="email-error" class="alert alert-danger d-none" role="alert">
+				Email already exists, please try other.
+			</div>
+
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					<p>Do you have an account? </p>
+					<a href="/login">Sign In</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

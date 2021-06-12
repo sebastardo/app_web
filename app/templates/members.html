@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="container">
+	<h3 class="color">Usuario: {{ session["username"] }}</h3>
+	<form action="/members_only" method="POST">
+		
+		<!-- id input -->
+		<div class="input-group form-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text"><i class="fas fa-user"></i></span>
+			</div>
+			<input type="text"
+				class="form-control"
+				name="post_id"
+				placeholder="id"
+				maxlength="3"
+				required
+			>
+		</div>
+
+		<div><h1 class="color">{{ titulo }}</h1>
+		<p class="color">{{ texto }}</p></div>
+
+		<div class="form-group">
+			<input type="submit" value="Search post" class="btn float-right login_btn">
+		</div>
+		
+	</form>
+	
+	<a href="/logout">Cerrar sesión</a>
+</div>
+{% endblock %}
